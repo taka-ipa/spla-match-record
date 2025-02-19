@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('matches', function (Blueprint $table) {
+        Schema::create('match_results', function (Blueprint $table) {
             $table->id(); // プライマリキー
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // ユーザーID (外部キー)
             $table->foreignId('stage_id')->constrained()->onDelete('cascade'); // ステージID (外部キー)
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('matches');
+        Schema::dropIfExists('match_results');
     }
 };

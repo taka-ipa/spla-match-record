@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             StagesTableSeeder::class,
             RulesTableSeeder::class,
             WeaponsTableSeeder::class,
-            MatchesTableSeeder::class,
+            MatchResultsTableSeeder::class,
         ]);
     }
 }

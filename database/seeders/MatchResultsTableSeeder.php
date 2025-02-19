@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class MatchesTableSeeder extends Seeder
+class MatchResultsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class MatchesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('matches')->insert([
+        DB::table('match_results')->insert([
             [
                 'user_id' => 1,
                 'stage_id' => 1,
