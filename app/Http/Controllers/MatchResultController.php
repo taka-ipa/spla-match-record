@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class MatchResultController extends Controller
 {
+    public function home()
+    {
+        return view('home');
+    }
+
     /**
      * Display a listing of the resource.
      */

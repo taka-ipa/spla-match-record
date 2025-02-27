@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MatchResultController;
 use Illuminate\Support\Facades\Route;
+
+
+// Route::get('/', [MatchResultController::class, 'home'])->name('home');
 
 Route::get('/', function () {
     return view('welcome');
