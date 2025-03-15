@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\MatchRequest;
+use App\Models\MatchResult;
+use App\Models\Stage;
+use App\Models\Rule;
+use App\Models\Weapon;
+use App\Models\Match;
 
 class MatchResultController extends Controller
 {
@@ -16,8 +22,10 @@ class MatchResultController extends Controller
      */
     public function index()
     {
-        //
+        $matches = MatchResult::with(['stage', 'rule', 'weapon'])->latest()->get();
+        return view('matches.index', compact('matches'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -30,9 +38,20 @@ class MatchResultController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MatchRequest $request)
     {
-        //
+        // $path = $request->file('stage')->store('stages', 'public');
+
+        // Match::create([
+        //     'stage' => $path,
+        //     'rule' => $request->rule,
+        //     'weapon' => $request->weapon,
+        //     'result' => $request->result,
+        //     'comment' => $request->comment,
+        //     'user_id' => auth()->id(),
+        // ]);
+
+        // return redirect()->route('matches.index')->with('success', '試合を投稿しました！');
     }
 
     /**
