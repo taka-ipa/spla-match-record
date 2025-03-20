@@ -17,7 +17,7 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             <!-- ここに共通ヘッダーを記述 -->
-            @include('layouts.announce-header')
+            @include('layouts.header')
 
             <!-- Page Heading -->
             @if(isset($header))

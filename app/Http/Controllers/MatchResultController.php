@@ -32,26 +32,15 @@ class MatchResultController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(MatchRequest $request)
+    public function store(Request $request)
     {
-        // $path = $request->file('stage')->store('stages', 'public');
-
-        // Match::create([
-        //     'stage' => $path,
-        //     'rule' => $request->rule,
-        //     'weapon' => $request->weapon,
-        //     'result' => $request->result,
-        //     'comment' => $request->comment,
-        //     'user_id' => auth()->id(),
-        // ]);
-
-        // return redirect()->route('matches.index')->with('success', '試合を投稿しました！');
+        //
     }
 
     /**
