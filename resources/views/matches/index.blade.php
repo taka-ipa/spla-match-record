@@ -1,5 +1,14 @@
 <x-app-layout>
 <body class="bg-gray-100 p-6">
+    <!-- ヘッダー部分 -->
+    <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold">{{ auth()->user()->name }}さんのリザルト</h2>
+            <a href="{{ route('matches.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                リザルトを投稿
+            </a>
+    </div>
+
+    <!-- メインコンテンツ -->
     @foreach ($matches as $match)
         <div class="bg-white rounded-lg shadow-md p-4 mb-6 flex items-start">
             <div class="flex-shrink-0">
@@ -18,6 +27,7 @@
                 <p class="text-sm text-gray-600 mt-1">ルール: {{ $match->rule->name }}</p>
                 <p class="text-sm text-gray-600 mt-1">ステージ: {{ $match->stage->name }}</p>
                 <p class="text-sm text-gray-600 mt-1">武器: {{ $match->weapon->name }}</p>
+                <p class="text-sm text-gray-600 mt-1">バトルメモリー: {{ $match->replay_code }}</p>
                 <p class="text-sm text-gray-600 mt-1">コメント: {{ $match->comment }}</p>
                 <div class="mt-4 flex items-center">
                     <img src="{{ $match->stage->image_path }}" alt="{{ $match->stage->name }}" class="w-16 h-16 rounded-md object-cover">

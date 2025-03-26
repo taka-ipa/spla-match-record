@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('rule_id')->constrained()->onDelete('cascade'); // ルールID (外部キー)
             $table->foreignId('weapon_id')->constrained()->onDelete('cascade'); // 武器ID (外部キー)
             $table->string('result'); // 勝敗結果（例: 'win' or 'lose'）
+            $table->string('replay_code', 20)->nullable()->comment('バトルメモリー'); // バトルメモリー（NULLを許可）
             $table->text('comment')->nullable(); // コメント（NULLを許可）
             $table->timestamps(); // created_at, updated_at を自動追加
         });

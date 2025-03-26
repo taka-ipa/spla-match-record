@@ -1,6 +1,6 @@
 <section class="flex bg-black text-white shadow h-10 py-2 border-b-2">
   <div class="container mx-auto flex justify-between">
-    <p class="">ヨシヒコ道場</p>
+    <a href="{{route('matches.index')}}" class="">ヨシヒコ道場</p>
     <div class="flex">
       @auth
         <a href="{{route('profile.edit')}}" class="ml-auto text-white">マイページ</a>
