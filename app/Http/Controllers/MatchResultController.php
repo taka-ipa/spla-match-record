@@ -32,7 +32,10 @@ class MatchResultController extends Controller
      */
     public function create()
     {
-        
+        $stages = Stage::all();
+        $rules = Rule::all();
+        $weapons = Weapon::all();
+        return view('matches.create', compact('stages', 'rules', 'weapons'));
     }
 
     /**
