@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form action="{{ route('matches.create') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('matches.store') }}" method="POST" class="bg-white p-6 rounded-lg shadow-md">
         @csrf
         <select name="stage" class="block w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
             <option value="">ステージを選択</option>

@@ -43,7 +43,23 @@ class MatchResultController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all()); // フォームデータを表示
+        $validated = $request->validate([
+            'stage_id' => 'required|exists:stages,id',
+            'rule_id' => 'required|exists:rules,id',
+            'weapon_id' => 'required|exists:weapons,id',
+        ]);
+        $matchResult = new MatchResult();
+        $matchResult->stage_id = $validated['stage_id'];
+        $matchResult->rule_id = $validated['rule_id'];
+        $matchResult->weapon_id = $validated['weapon_id'];
+        $matchResult->result = $request->input('result'); // Assuming you have a result field in your form
+        $matchResult->replay_code = $request->input('replay_code');
+        $matchResult->comment = $request->input('comment');
+        $matchResult->user_id = auth()->id(); // Assuming you have user authentication  
+    
+        $matchResult->save();
+        return redirect()->route('matches.index')->with('success', 'Match result created successfully.');
     }
 
     /**

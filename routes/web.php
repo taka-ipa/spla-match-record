@@ -21,11 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/matches', [MatchResultController::class, 'index'])->name('matches.index');
     Route::get('/matches/create', [MatchResultController::class, 'create'])->name('matches.create');
-    // Route::post('/matches', [MatchResultController::class, 'store'])->name('matches.store');
-    // Route::get('/matches/{id}', [MatchResultController::class, 'show'])->name('matches.show');
-    // Route::get('/matches/{id}/edit', [MatchResultController::class, 'edit'])->name('matches.edit');
-    // Route::patch('/matches/{id}', [MatchResultController::class, 'update'])->name('matches.update');
-    // Route::delete('/matches/{id}', [MatchResultController::class, 'destroy'])->name('matches.destroy');
+    Route::post('/matches', [MatchResultController::class, 'store'])->name('matches.store');
 });
 
 require __DIR__.'/auth.php';
