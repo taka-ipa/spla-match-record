@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MatchResult extends Model
 {
-    protected $fillable = ['stage_id', 'rule_id', 'weapon_id', 'result', 'comment', 'user_id'];
+    protected $fillable = ['stage_id', 'rule_id', 'weapon_id', 'result', 'comment','replay_code', 'user_id'];
 
     public function stage()
     {
