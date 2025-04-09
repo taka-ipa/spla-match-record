@@ -21,10 +21,30 @@ class MatchResultController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $matches = MatchResult::with(['stage', 'rule', 'weapon'])->latest()->get();
-        return view('matches.index', compact('matches'));
+        $matches = MatchResult::where('user_id', auth()->id())
+            ->with(['rule', 'stage', 'weapon'])
+            ->when($request->filled('rule'), function ($query) use ($request) {
+                return $query->where('rule_id', $request->rule);
+            })
+            ->when($request->filled('stage'), function ($query) use ($request) {
+                return $query->where('stage_id', $request->stage);
+            })
+            ->when($request->filled('weapon'), function ($query) use ($request) {
+                return $query->where('weapon_id', $request->weapon);
+            })
+            ->when($request->filled('comment'), function ($query) use ($request) {
+                return $query->where('comment', 'like', '%' . $request->comment . '%');
+            })
+            ->latest()
+            ->paginate(10); // 必要に応じて件数を調整
+
+        $rules = Rule::all();
+        $stages = Stage::all();
+        $weapons = Weapon::all();
+
+        return view('matches.index', compact('matches', 'rules', 'stages', 'weapons'));
     }
 
 
