@@ -34,10 +34,21 @@
                         </span>
                     </div>
                     <div class="ml-4 flex-1">
-                        <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between">
+                        <div>
                             <h3 class="text-lg font-semibold">{{ $match->stage->name }}</h3>
                             <span class="text-sm text-gray-500">{{ $match->created_at->format('Y/m/d H:i') }}</span>
                         </div>
+                        @if (auth()->id() === $match->user_id)
+                            <form method="POST" action="{{ route('matches.destroy', $match->id) }}" onsubmit="return confirm('本当に削除しますか？');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white rounded-full px-4 py-2 text-xs font-semibold hover:bg-red-600 focus:outline-none focus:shadow-outline">
+                                    削除
+                                </button>
+                            </form>
+                        @endif
+                    </div>
                         <p class="text-sm text-gray-600 mt-1">投稿者: {{ $match->user->name }}</p>
                         <p class="text-sm text-gray-600 mt-1">ルール: {{ $match->rule->name }}</p>
                         <p class="text-sm text-gray-600 mt-1">ステージ: {{ $match->stage->name }}</p>
@@ -55,7 +66,7 @@
             {{ $matches->links() }}
         </div>
         <div class="w-1/4 sticky top-4 ml-6">
-        <form method="GET" action="{{ route('matches.index') }}" class="bg-white rounded-lg shadow-md p-4">
+            <form method="GET" action="{{ route('matches.index') }}" class="bg-white rounded-lg shadow-md p-4">
                 <div class="mb-2">
                     <label for="rule" class="block text-gray-700 text-xs font-bold mb-1 sm:text-sm">ルール</label>
                     <select name="rule" id="rule" class="shadow appearance-none border rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs sm:text-sm">

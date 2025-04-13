@@ -10,6 +10,8 @@ use App\Models\Rule;
 use App\Models\Weapon;
 use App\Models\Match;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class MatchResultController extends Controller
 {
@@ -122,8 +124,15 @@ class MatchResultController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(MatchResult $match)
     {
-        //
+        // 認可処理 (推奨)
+        if (Auth::id() !== $match->user_id) {
+            abort(403, 'このリザルトを削除する権限がありません。');
+        }
+
+        $match->delete();
+
+        return redirect()->route('matches.index')->with('success', 'リザルトを削除しました。');
     }
 }

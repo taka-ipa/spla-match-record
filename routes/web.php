@@ -5,6 +5,7 @@ use App\Http\Controllers\MatchResultController;
 use Illuminate\Support\Facades\Route;
 
 
+
 // Route::get('/', [MatchResultController::class, 'home'])->name('home');
 
 Route::get('/', function () {
@@ -23,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/matches', [MatchResultController::class, 'index'])->name('matches.index');
     Route::get('/matches/create', [MatchResultController::class, 'create'])->name('matches.create');
     Route::post('/matches', [MatchResultController::class, 'store'])->name('matches.store');
+    Route::delete('/matches/{match}', [MatchResultController::class, 'destroy'])->name('matches.destroy');
 });
 
 require __DIR__.'/auth.php';
