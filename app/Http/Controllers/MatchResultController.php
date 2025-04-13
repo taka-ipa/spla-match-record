@@ -23,8 +23,14 @@ class MatchResultController extends Controller
      */
     public function index(Request $request)
     {
-        $matches = MatchResult::where('user_id', auth()->id())
-            ->with(['rule', 'stage', 'weapon'])
+        $matches = MatchResult::with(['rule', 'stage', 'weapon', 'user']) // user リレーションを eager load
+            ->when($request->input('scope') == 'all', function ($query) {
+                // 全てのユーザーのリザルトを表示
+                return $query;
+            }, function ($query) {
+                // ログインしているユーザーのリザルトのみ表示 (デフォルト)
+                return $query->where('user_id', auth()->id());
+            })
             ->when($request->filled('rule'), function ($query) use ($request) {
                 return $query->where('rule_id', $request->rule);
             })
@@ -38,7 +44,7 @@ class MatchResultController extends Controller
                 return $query->where('comment', 'like', '%' . $request->comment . '%');
             })
             ->latest()
-            ->paginate(10); // 必要に応じて件数を調整
+            ->paginate(10);
 
         $rules = Rule::all();
         $stages = Stage::all();
@@ -46,6 +52,7 @@ class MatchResultController extends Controller
 
         return view('matches.index', compact('matches', 'rules', 'stages', 'weapons'));
     }
+
 
 
     /**

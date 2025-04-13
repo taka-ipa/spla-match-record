@@ -22,4 +22,9 @@ class MatchResult extends Model
     {
         return $this->belongsTo(Weapon::class);
     }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
