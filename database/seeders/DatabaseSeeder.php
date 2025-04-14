@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             RulesTableSeeder::class,
             WeaponsTableSeeder::class,
             MatchResultsTableSeeder::class,
+            CommentsTableSeeder::class,
         ]);
     }
 }

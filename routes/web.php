@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MatchResultController;
+use App\Http\Controllers\CommentController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/matches/create', [MatchResultController::class, 'create'])->name('matches.create');
     Route::post('/matches', [MatchResultController::class, 'store'])->name('matches.store');
     Route::delete('/matches/{match}', [MatchResultController::class, 'destroy'])->name('matches.destroy');
+    Route::post('/matches/{matchResult}/comments', [CommentController::class, 'store'])->name('comments.store');
 });
 
 require __DIR__.'/auth.php';
