@@ -20,7 +20,7 @@ class CommentsTableSeeder extends Seeder
         // 投稿ユーザーとリザルトの数を指定 (必要に応じて調整)
         $users = User::all();
         $matchResults = MatchResult::all();
-        $numberOfComments = 50; // 生成するコメントの数
+        $numberOfComments = 10; // 生成するコメントの数
 
         if ($users->isNotEmpty() && $matchResults->isNotEmpty()) {
             for ($i = 0; $i < $numberOfComments; $i++) {
@@ -37,7 +37,7 @@ class CommentsTableSeeder extends Seeder
                     'user_id' => $user->id,
                     'match_result_id' => $matchResult->id,
                     'parent_id' => $parentId,
-                    'body' => $faker->realTextBetween(20, 200), // 20〜200文字のランダムなテキスト
+                    'body' => $faker->realTextBetween(5, 20), // 5〜20文字のランダムなテキスト
                     'created_at' => $faker->dateTimeBetween('-1 year', 'now'),
                     'updated_at' => $faker->dateTimeBetween('-1 year', 'now'),
                 ]);

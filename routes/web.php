@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/matches', [MatchResultController::class, 'index'])->name('matches.index');
     Route::get('/matches/create', [MatchResultController::class, 'create'])->name('matches.create');
     Route::post('/matches', [MatchResultController::class, 'store'])->name('matches.store');
+    Route::get('/matches/{match}', [MatchResultController::class, 'show'])->name('matches.show');
     Route::delete('/matches/{match}', [MatchResultController::class, 'destroy'])->name('matches.destroy');
     Route::post('/matches/{matchResult}/comments', [CommentController::class, 'store'])->name('comments.store');
 });

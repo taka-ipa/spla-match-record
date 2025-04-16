@@ -4,11 +4,11 @@
             {{ $comment->user->name }}
         </div>
         <div>
-            <p class="text-gray-800">{{ $comment->body }}</p>
-            <div class="flex items-center text-sm text-gray-500 mt-1">
-                <span class="mr-2">{{ $comment->created_at->diffForHumans() }}</span>
-                <button class="focus:outline-none reply-button" data-comment-id="{{ $comment->id }}">返信する</button>
+            <div class="flex items-baseline"> {{-- コメントとタイムスタンプを横並びにするための div --}}
+                <p class="text-gray-800 mr-2">{{ $comment->body }}</p>
+                <p class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}</p>
             </div>
+            <div class="flex items-center text-sm text-gray-500 mt-1"></div>
             @if ($comment->replies->isNotEmpty())
                 @foreach ($comment->replies as $reply)
                     @include('partials.comment', ['comment' => $reply, 'depth' => ($depth ?? 0) + 1])

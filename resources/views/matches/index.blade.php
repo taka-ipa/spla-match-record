@@ -25,7 +25,7 @@
                 </div>
             </div>
 @foreach ($matches as $match)
-    <a href="" class="bg-white rounded-lg shadow-md p-4 mb-6 flex items-start hover:shadow-lg transition duration-300">
+    <div class="bg-white rounded-lg shadow-md p-4 mb-6 flex items-start">
         <div class="flex-shrink-0">
             <span class="text-white {{ $match->result == 'win' ? 'bg-green-500' : 'bg-red-500' }} px-2 py-1 rounded-full text-xs font-bold">
                 {{ $match->result == 'win' ? '勝利' : '敗北' }}
@@ -47,7 +47,7 @@
                             </button>
                         </form>
                     @endif
-                    <button @click.stop="openComments = !openComments" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <button onclick="goToMatchShow('{{ route('matches.show', $match->id) }}')" class="text-gray-500 hover:text-gray-700 focus:outline-none">
                         <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.124C2.92 12.166 2 10.359 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm4 0H9v2h2V9zm4 0h-2v2h2V9z" clip-rule="evenodd"/></svg>
                     </button>
                 </div>
@@ -64,24 +64,7 @@
                     </div>
             </div>
         </div>
-    </a>
-    <!-- <div x-show="openComments" class="mt-4">
-        <h4 class="font-semibold mb-2">コメント</h4>
-        @forelse ($match->comments as $comment)
-            @include('partials.comment', ['comment' => $comment])
-        @empty
-            <p class="text-gray-500">まだコメントはありません。</p>
-        @endforelse
-
-        <h4 class="font-semibold mt-4 mb-2">コメントを投稿</h4>
-        <form method="POST" action="{{ route('comments.store', $match->id) }}" class="comment-form">
-            @csrf
-            <input type="hidden" name="parent_id" class="reply-to-input">
-            <textarea name="body" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="3" placeholder="コメントを入力"></textarea>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline mt-2">投稿</button>
-            <button type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 focus:outline-none focus:shadow-outline mt-2 ml-2 reply-cancel-button" style="display: none;">返信キャンセル</button>
-        </form>
-    </div> -->
+    </div>
 @endforeach
 {{ $matches->links() }}
         </div>
@@ -132,3 +115,9 @@
     </div>
 </body>
 </x-app-layout>
+
+<script>
+    function goToMatchShow(url) {
+        window.location.href = url;
+    }
+</script>
