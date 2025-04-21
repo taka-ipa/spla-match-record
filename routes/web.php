@@ -12,7 +12,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 // Route::get('/', [MatchResultController::class, 'home'])->name('home');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', function () {
