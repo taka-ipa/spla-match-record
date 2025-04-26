@@ -7,9 +7,13 @@
 
         {{-- ドラクエ風選択肢UI --}}
         <div class="bg-black border-4 border-white p-4 w-80 text-left text-lg dot-font">
-            <ul id="menu" class="space-y-2">
-                <li class="menu-item" data-link="{{ route('login') }}">押忍！（ログイン）</li>
-                <li class="menu-item" data-link="{{ route('register') }}">新規入門</li>
+            <ul id="menu" class="space-y-2 dot-font">
+                <li class="menu-item">
+                    <a href="{{ route('login') }}" class="block w-full">押忍！（ログイン）</a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('register') }}" class="block w-full">新規入門</a>
+                </li>
             </ul>
         </div>
     </div>
