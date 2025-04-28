@@ -64,7 +64,7 @@ class MatchResultController extends Controller
     {
         $stages = Stage::all();
         $rules = Rule::all();
-        $weapons = Weapon::all();
+        $weapons = auth()->user()->weapons;
         return view('matches.create', compact('stages', 'rules', 'weapons'));
     }
 
@@ -94,7 +94,7 @@ class MatchResultController extends Controller
 
     $matchResult->save();
 
-    return redirect()->route('matches.index')->with('success', 'Match result created successfully.');
+    return redirect()->route('matches.index')->with('success', '投稿が完了しました！');
 }
 
     /**

@@ -15,7 +15,7 @@
             @endforeach
         </select><br>
 
-        <select name="weapon" class="block w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+        <select name="weapon_id" class="block w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
             <option value="">武器を選択</option>
             @foreach ($weapons as $weapon)
                 <option value="{{ $weapon->id }}">{{ $weapon->name }}</option>

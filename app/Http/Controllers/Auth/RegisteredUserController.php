@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Weapon;
 
 class RegisteredUserController extends Controller
 {
@@ -19,6 +20,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
+        $weapons = Weapon::all(); // ここで武器一覧を取る！
+        return view('auth.register', compact('weapons')); // そしてviewに渡す！
         return view('auth.register');
     }
 
@@ -33,6 +36,8 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'weapon_ids' => ['required', 'array', 'min:1', 'max:3'], // 1つ以上3つ以下
+            'weapon_ids.*' => ['exists:weapons,id'],          // 追加：武器IDが存在するか確認
         ]);
 
         $user = User::create([
@@ -40,6 +45,11 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        // ここで武器を紐づけ！
+        if ($request->filled('weapon_ids')) {
+            $user->weapons()->attach($request->weapon_ids);
+        }
 
         event(new Registered($user));
 

@@ -16,4 +16,10 @@ class Weapon extends Model
     {
         return $this->hasMany(MatchResult::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_weapon');
+    }
+
 }
