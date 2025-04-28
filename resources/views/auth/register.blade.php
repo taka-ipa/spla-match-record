@@ -39,16 +39,35 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div>
-            <label>よく使う武器（3つ選んでください）</label><br>
+        <div class="mt-4">
+            <label>よく使う武器を３つ選んでください</label>
 
-            @foreach ($weapons as $weapon)
-                <div>
-                    <input type="checkbox" name="weapon_ids[]" value="{{ $weapon->id }}">
-                    {{ $weapon->name }}
-                </div>
-            @endforeach
+            <!-- 1つ目の武器 -->
+            <select name="weapon_ids[]" class="block mt-2 w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                <option value="">武器を選択</option>
+                @foreach ($weapons as $weapon)
+                    <option value="{{ $weapon->id }}">{{ $weapon->name }}</option>
+                @endforeach
+            </select>
+
+            <!-- 2つ目の武器 -->
+            <select name="weapon_ids[]" class="block mt-2 w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                <option value="">武器を選択</option>
+                @foreach ($weapons as $weapon)
+                    <option value="{{ $weapon->id }}">{{ $weapon->name }}</option>
+                @endforeach
+            </select>
+
+            <!-- 3つ目の武器 -->
+            <select name="weapon_ids[]" class="block mt-2 w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                <option value="">武器を選択</option>
+                @foreach ($weapons as $weapon)
+                    <option value="{{ $weapon->id }}">{{ $weapon->name }}</option>
+                @endforeach
+            </select>
+
         </div>
+
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
