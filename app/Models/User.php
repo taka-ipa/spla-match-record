@@ -53,7 +53,7 @@ class User extends Authenticatable
 
     public function getAuthIdentifierName()
     {
-        return 'name';
+        return 'id';
     }
 
 }
