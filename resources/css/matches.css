@@ -1,0 +1,83 @@
+/* スマホ全体対応 */
+@media (max-width: 768px) {
+  .match-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .match-card .flex-shrink-0 {
+    margin-bottom: 8px;
+  }
+
+  .match-card .ml-4 {
+    margin-left: 0;
+  }
+
+  .match-card .flex.items-center.justify-between {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .match-card p,
+  .match-card .text-sm {
+    font-size: 13px;
+  }
+
+  .match-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .header-title,
+  .text-xl {
+    font-size: 1.2rem;
+  }
+
+  .text-lg {
+    font-size: 1rem;
+  }
+
+  .match-card .flex.items-center > * + * {
+    margin-left: 0;
+    margin-top: 4px;
+  }
+}
+
+/* カード表示スタイル */
+.match-card {
+  display: flex;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* テーブル・フォーム調整用 */
+@media (max-width: 768px) {
+  .sidebar-form {
+    position: static;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+}
+
+.sidebar-form {
+  width: 25%;
+  position: sticky;
+  top: 1rem;
+}
+
+/* ボタン調整 */
+@media (max-width: 768px) {
+  .header-buttons a {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .header-buttons a + a {
+    margin-left: 0;
+  }
+}
