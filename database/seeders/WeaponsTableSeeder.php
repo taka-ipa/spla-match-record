@@ -10,9 +10,9 @@ class WeaponsTableSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('weapons')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        if (DB::getDriverName() !== 'pgsql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        }        
         $weapons = [
             'わかばシューター', 'もみじシューター', 'スプラシューター', 'スプラシューターコラボ',
             '52ガロン', '52ガロンデコ', '96ガロン', '96ガロンデコ',

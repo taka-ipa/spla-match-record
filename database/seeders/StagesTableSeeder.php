@@ -10,14 +10,6 @@ class StagesTableSeeder extends Seeder
 {
     public function run(): void
     {
-        // 外部キー制約を一時解除
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-    
-        // truncateで全消し
-        DB::table('stages')->truncate();
-
-        // 外部キー制約を再び有効化
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         // データをinsert
         $stages = [

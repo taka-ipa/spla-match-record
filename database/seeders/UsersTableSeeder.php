@@ -19,32 +19,14 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'User One',
+                'name' => 'test',
                 'email' => 'user1@example.com',
                 'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password123'),
+                'password' => Hash::make('password'), // password
                 'remember_token' => Str::random(10),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ],
-            [
-                'name' => 'User Two',
-                'email' => 'user2@example.com',
-                'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password123'),
-                'remember_token' => Str::random(10),
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'name' => 'User Three',
-                'email' => 'user3@example.com',
-                'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password123'),
-                'remember_token' => Str::random(10),
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
+            ]
         ]);
     }
 }
