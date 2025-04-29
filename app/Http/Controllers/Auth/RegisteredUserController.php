@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'weapon_ids' => ['required', 'array', 'min:1', 'max:3'], // 1つ以上3つ以下
             'weapon_ids.*' => ['exists:weapons,id'],          // 追加：武器IDが存在するか確認

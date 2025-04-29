@@ -51,4 +51,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Weapon::class, 'user_weapon');
     }
 
+    public function getAuthIdentifierName()
+    {
+        return 'name';
+    }
+
 }

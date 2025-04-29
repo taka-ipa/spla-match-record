@@ -30,10 +30,10 @@
         <div class="bg-black border-4 border-white p-4 w-80 text-left text-lg dot-font">
             <ul id="menu" class="space-y-2 dot-font">
                 <li class="menu-item">
-                    <a href="{{ route('login') }}" class="block w-full">しってます（ログイン）</a>
+                    <a href="{{ route('register') }}" class="block w-full">はい（新規入門）</a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('register') }}" class="block w-full">はい（新規入門）</a>
+                    <a href="{{ route('login') }}" class="block w-full">しってます（ログイン）</a>
                 </li>
             </ul>
         </div>
