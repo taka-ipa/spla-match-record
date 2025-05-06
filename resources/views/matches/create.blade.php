@@ -47,9 +47,10 @@
 
     <div class="mb-4">
       <label for="replay_code" class="block mb-2 font-bold text-gray-700 text-base">バトルメモリー</label>
-      <input type="url" name="replay_code" id="replay_code"
-        placeholder="バトルメモリーのURLを貼ってください"
-        class="block w-full sm:w-1/3 text-base px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+      <textarea name="replay_code" id="replay_code"
+        rows="2"
+        placeholder="スプラの共有からコピーした内容をそのまま貼り付けてください（例：#ガチヤグラ https://〜）"
+        class="block w-full sm:w-1/3 min-w-[30rem] text-base px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"></textarea>
     </div>
 
     <div class="mb-4">
