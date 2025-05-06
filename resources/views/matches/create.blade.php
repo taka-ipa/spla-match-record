@@ -47,7 +47,8 @@
 
     <div class="mb-4">
       <label for="replay_code" class="block mb-2 font-bold text-gray-700 text-base">バトルメモリー</label>
-      <input type="text" name="replay_code" id="replay_code"
+      <input type="url" name="replay_code" id="replay_code"
+        placeholder="バトルメモリーのURLを貼ってください"
         class="block w-full sm:w-1/3 text-base px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
     </div>
 

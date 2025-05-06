@@ -80,7 +80,7 @@ class MatchResultController extends Controller
         'weapon' => 'required|exists:weapons,id',
         'result' => 'required|in:win,lose',
         'comment' => 'nullable|string',
-        'replay_code' => 'nullable|string|max:255',
+        'replay_code' => 'nullable|url|max:1000',
     ]);
 
     $matchResult = new MatchResult();

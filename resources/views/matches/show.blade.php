@@ -20,7 +20,18 @@
                 <p>ルール: {{ $match->rule->name }}</p>
                 <p>ステージ: {{ $match->stage->name }}</p>
                 <p>武器: {{ $match->weapon->name }}</p>
-                <p>バトルメモリー: {{ $match->replay_code }}</p>
+                <p class="text-sm text-gray-600 mt-2">
+                    バトルメモリー:
+                    @if ($match->replay_code && filter_var($match->replay_code, FILTER_VALIDATE_URL))
+                        <a href="{{ $match->replay_code }}" target="_blank" rel="noopener" class="text-blue-500 hover:underline">
+                            {{ $match->replay_code }}
+                        </a>
+                    @elseif ($match->replay_code)
+                        {{ $match->replay_code }}
+                    @else
+                        なし
+                    @endif
+                </p>
                 <p>コメント: {{ $match->comment }}</p>
                 <div class="mt-4">
                     <img src="{{ $match->stage->image_path }}" alt="{{ $match->stage->name }}" class="w-32 h-32 rounded-md object-cover">
