@@ -90,6 +90,11 @@ class MatchResultController extends Controller
     $matchResult->result = $request->input('result');
     $matchResult->comment = $request->input('comment');
     $matchResult->replay_code = $request->input('replay_code');
+    // 入力があれば、URL部分だけを抽出
+    if (!empty($replay_code)) {
+        preg_match('/https?:\/\/[^\s]+/', $replay_code, $matches);
+        $replay_code = $matches[0] ?? null;
+    }
     $matchResult->user_id = auth()->id();
 
     $matchResult->save();
