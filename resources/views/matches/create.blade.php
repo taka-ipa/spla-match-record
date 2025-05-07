@@ -64,21 +64,5 @@
       送信
     </button>
   </form>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const replayTextarea = document.getElementById('replay_code');
-
-  replayTextarea.addEventListener('paste', function () {
-    setTimeout(() => {
-      const text = replayTextarea.value;
-      const normalized = text.replace(/[\n\r]/g, ' ').replace(/　/g, ' ');
-      const urlMatch = normalized.match(/https?:\/\/[^\s]+/);
-      replayTextarea.value = urlMatch ? urlMatch[0] : '';
-    }, 10); // 少し遅らせて貼り付け後の内容を確実に取得
-  });
-});
-</script>
-
 </x-app-layout>
 
