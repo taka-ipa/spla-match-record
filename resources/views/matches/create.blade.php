@@ -49,8 +49,8 @@
       <label for="replay_code" class="block mb-2 font-bold text-gray-700 text-base">バトルメモリー</label>
       <textarea name="replay_code" id="replay_code"
         rows="2"
-        placeholder="スプラの共有からコピーした内容をそのまま貼り付けてください（例：#ガチヤグラ https://〜）"
-        class="block w-full sm:w-1/3 min-w-[30rem] text-base px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"></textarea>
+        placeholder="URLを貼り付けてください（例：#ガチヤグラ https://〜）"
+        class="block w-full sm:w-1/3 min-w-[20rem] text-base px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none" onpaste="handlePaste(event)"></textarea>
     </div>
 
     <div class="mb-4">
@@ -65,4 +65,17 @@
     </button>
   </form>
 </x-app-layout>
+
+<script>
+function handlePaste(e) {
+  e.preventDefault();
+  const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+  const urlMatch = pastedText.match(/https?:\/\/[^\s]+/);
+  if (urlMatch) {
+    e.target.value = urlMatch[0];
+  } else {
+    e.target.value = '';
+  }
+}
+</script>
 
