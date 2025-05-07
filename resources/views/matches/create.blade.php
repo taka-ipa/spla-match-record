@@ -65,7 +65,6 @@
       送信
     </button>
   </form>
-</x-app-layout>
 
 <script>
 function handlePaste(e) {
@@ -86,4 +85,6 @@ function handlePaste(e) {
   }
 }
 </script>
+
+</x-app-layout>
 
