@@ -50,7 +50,6 @@
       <textarea name="replay_code" id="replay_code"
         rows="2"
         placeholder="URLを貼り付けてください（例：#ガチヤグラ https://〜）"
-        onpaste="handlePaste(event)"
         class="block w-full sm:w-1/3 min-w-[16rem] text-base px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"></textarea>
     </div>
 
@@ -67,23 +66,18 @@
   </form>
 
 <script>
-function handlePaste(e) {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+  const replayTextarea = document.getElementById('replay_code');
 
-  const pastedText = (e.clipboardData || window.clipboardData).getData('text');
-
-  // 改行や全角スペースも考慮して整形
-  const normalized = pastedText.replace(/[\n\r]/g, ' ').replace(/　/g, ' ');
-
-  // URL部分を抽出（https または http で始まる）
-  const urlMatch = normalized.match(/https?:\/\/[^\s]+/);
-
-  if (urlMatch) {
-    e.target.value = urlMatch[0];
-  } else {
-    e.target.value = '';
-  }
-}
+  replayTextarea.addEventListener('paste', function () {
+    setTimeout(() => {
+      const text = replayTextarea.value;
+      const normalized = text.replace(/[\n\r]/g, ' ').replace(/　/g, ' ');
+      const urlMatch = normalized.match(/https?:\/\/[^\s]+/);
+      replayTextarea.value = urlMatch ? urlMatch[0] : '';
+    }, 10); // 少し遅らせて貼り付け後の内容を確実に取得
+  });
+});
 </script>
 
 </x-app-layout>
