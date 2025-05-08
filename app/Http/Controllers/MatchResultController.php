@@ -73,6 +73,7 @@ class MatchResultController extends Controller
      */
     public function store(Request $request)
 {
+    // dd($request->all());
     // バリデーション（推奨）
     $request->validate([
         'stage' => 'required|exists:stages,id',
@@ -80,8 +81,9 @@ class MatchResultController extends Controller
         'weapon' => 'required|exists:weapons,id',
         'result' => 'required|in:win,lose',
         'comment' => 'nullable|string',
-        'replay_code' => 'nullable|url|max:1000',
+        'replay_code' => 'nullable|string|max:1000',
     ]);
+
 
     $matchResult = new MatchResult();
     $matchResult->stage_id = $request->input('stage'); // フォームの name 属性 'stage' を使用
@@ -90,11 +92,6 @@ class MatchResultController extends Controller
     $matchResult->result = $request->input('result');
     $matchResult->comment = $request->input('comment');
     $matchResult->replay_code = $request->input('replay_code');
-    // 入力があれば、URL部分だけを抽出
-    if (!empty($replay_code)) {
-        preg_match('/https?:\/\/[^\s]+/', $replay_code, $matches);
-        $replay_code = $matches[0] ?? null;
-    }
     $matchResult->user_id = auth()->id();
 
     $matchResult->save();

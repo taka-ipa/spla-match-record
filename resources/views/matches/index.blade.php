@@ -77,17 +77,19 @@
               <p class="text-sm text-gray-600 mt-1">ルール: {{ $match->rule->name }}</p>
               <p class="text-sm text-gray-600 mt-1">ステージ: {{ $match->stage->name }}</p>
               <p class="text-sm text-gray-600 mt-1">武器: {{ $match->weapon->name }}</p>
+              @php
+                $text = $match->replay_code ?? '';
+
+                // URLだけリンクに変換（他はそのまま表示）
+                $formatted = preg_replace_callback(
+                  '/https?:\/\/[^\s]+/',
+                  fn($matches) => '<a href="' . e($matches[0]) . '" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">' . e($matches[0]) . '</a>',
+                  e($text)
+                );
+              @endphp
+
               <p class="text-sm text-gray-600 mt-1">
-                バトルメモリー:
-                @if ($match->replay_code && filter_var($match->replay_code, FILTER_VALIDATE_URL))
-                  <a href="{{ $match->replay_code }}" target="_blank" rel="noopener" class="text-blue-500 hover:underline">
-                    {{ $match->replay_code }}
-                  </a>
-                @elseif ($match->replay_code)
-                  {{ $match->replay_code }}
-                @else
-                  なし
-                @endif
+                バトルメモリー: {!! $formatted ?: 'なし' !!}
               </p>
               <p class="text-sm text-gray-600 mt-1">コメント: {{ $match->comment }}</p>
               <div class="mt-4 flex items-center">

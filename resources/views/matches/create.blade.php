@@ -49,10 +49,10 @@
       <label for="replay_code" class="block mb-2 font-bold text-gray-700 text-base">バトルメモリー</label>
       <textarea name="replay_code" id="replay_code"
         rows="2"
-        autocomplete="off"
-        placeholder="URLを貼り付けてください（例：#ガチヤグラ https://〜）"
-        class="block w-full sm:w-1/3 min-w-[16rem] text-base px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"></textarea>
+        class="block w-full sm:w-1/3 min-w-[16rem] text-base px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      ></textarea>
     </div>
+
 
     <div class="mb-4">
       <label for="comment" class="block mb-2 font-bold text-gray-700 text-base">コメント</label>
