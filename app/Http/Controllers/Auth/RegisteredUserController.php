@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
             'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'weapon_ids' => ['required', 'array', 'min:1', 'max:3'], // 1つ以上3つ以下
-            'weapon_ids.*' => ['exists:weapons,id'],          // 追加：武器IDが存在するか確認
+            'weapon_ids.*' => ['nullable', 'exists:weapons,id'],// 追加：武器IDが存在するか確認
         ]);
 
         $user = User::create([
@@ -48,7 +48,9 @@ class RegisteredUserController extends Controller
 
         // ここで武器を紐づけ！
         if ($request->filled('weapon_ids')) {
-            $user->weapons()->attach($request->weapon_ids);
+            // 空の値（""）を除外してから紐づけ
+            $weaponIds = array_filter($request->weapon_ids, fn($id) => !empty($id));
+            $user->weapons()->attach($weaponIds);
         }
 
         event(new Registered($user));
